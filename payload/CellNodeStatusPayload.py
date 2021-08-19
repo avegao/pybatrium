@@ -44,10 +44,10 @@ class CellNodeStatusPayload(Payload):
         data_parsed = parser.parse(data)
 
         for node in data_parsed.get('nodes'):
-            node['MinCellVolt'] = node.get('MinCellVolt') / 1000
-            node['MaxCellVolt'] = node.get('MaxCellVolt') / 1000
-            node['MinCellTemp'] = node.get('MinCellTemp') - 40
-            node['BypassTemp'] = node.get('BypassTemp') - 40
-            node['BypassAmp'] = node.get('BypassAmp') / 1000
+            node['MinCellVolt'] = Payload.clean_voltage(node.get('MinCellVolt'))
+            node['MaxCellVolt'] = Payload.clean_voltage(node.get('MaxCellVolt'))
+            node['MinCellTemp'] = Payload.clean_temperature(node.get('MinCellTemp'))
+            node['BypassTemp'] = Payload.clean_temperature(node.get('BypassTemp'))
+            node['BypassAmp'] = Payload.clean_voltage(node.get('BypassAmp'))
 
         return data_parsed

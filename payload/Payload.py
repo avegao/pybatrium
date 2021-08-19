@@ -10,7 +10,10 @@ class Payload:
     def parse(data: bytes) -> Dict:
         pass
 
-    # @staticmethod
-    # @abstractmethod
-    # def __from_struct(data: Dict) -> Payload:
-    #     pass
+    @staticmethod
+    def clean_voltage(data: int) -> float:
+        return data / 1000
+
+    @staticmethod
+    def clean_temperature(data: int) -> int:
+        return data - 40

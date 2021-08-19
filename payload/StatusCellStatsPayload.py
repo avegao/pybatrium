@@ -49,13 +49,15 @@ class StatusCellStatsPayload(Payload):
 
     @staticmethod
     def clean_data(data: Dict) -> None:
-        data['MinCellVolt'] = data.get('MinCellVolt') / 1000
-        data['MaxCellVolt'] = data.get('MaxCellVolt') / 1000
-        data['MinCellTemp'] = data.get('MinCellTemp') - 40
-        data['MaxCellTemp'] = data.get('MaxCellTemp') - 40
-        data['MinBypassAmp'] = data.get('MinBypassAmp') / 1000
-        data['MaxBypassAmp'] = data.get('MaxBypassAmp') / 1000
-        data['MinBypassTemp'] = data.get('MinBypassTemp') - 40
-        data['MaxBypassTemp'] = data.get('MaxBypassTemp') - 40
-        data['MinBypassTempId'] = data.get('MinBypassTempId') - 40
-        data['MaxBypassTempId'] = data.get('MaxBypassTempId') - 40
+        data['MinCellVolt'] = Payload.clean_voltage(data.get('MinCellVolt'))
+        data['MaxCellVolt'] = Payload.clean_voltage(data.get('MaxCellVolt'))
+        data['MinCellTemp'] = Payload.clean_temperature(data.get('MinCellTemp'))
+        data['MaxCellTemp'] = Payload.clean_temperature(data.get('MaxCellTemp'))
+        data['MinBypassAmp'] = Payload.clean_voltage(data.get('MinBypassAmp'))
+        data['MaxBypassAmp'] = Payload.clean_voltage(data.get('MaxBypassAmp'))
+        data['MinBypassTemp'] = Payload.clean_temperature(data.get('MinBypassTemp'))
+        data['MaxBypassTemp'] = Payload.clean_temperature(data.get('MaxBypassTemp'))
+        data['MinBypassTempId'] = Payload.clean_temperature(data.get('MinBypassTempId'))
+        data['MaxBypassTempId'] = Payload.clean_temperature(data.get('MaxBypassTempId'))
+        data['AvgCellVolt'] = Payload.clean_voltage(data.get('AvgCellVolt'))
+        data['AvgCellTemp'] = Payload.clean_temperature(data.get('AvgCellTemp'))

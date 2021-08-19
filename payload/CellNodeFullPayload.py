@@ -55,17 +55,17 @@ class CellNodeFullPayload(Payload):
 
         data_parsed = parser.parse(data)
 
-        data_parsed['MinCellVolt'] = data_parsed.get('MinCellVolt') / 1000
-        data_parsed['MaxCellVolt'] = data_parsed.get('MaxCellVolt') / 1000
-        data_parsed['MinCellTemp'] = data_parsed.get('MinCellTemp') - 40
-        data_parsed['BypassTemp'] = data_parsed.get('BypassTemp') - 40
-        data_parsed['BypassAmp'] = data_parsed.get('BypassAmp') / 1000
-        data_parsed['LoCellVoltAlert'] = data_parsed.get('LoCellVoltAlert') / 1000
-        data_parsed['HiCellVoltAlert'] = data_parsed.get('HiCellVoltAlert') / 1000
-        data_parsed['BypassVoltLevel'] = data_parsed.get('BypassVoltLevel') / 1000
-        data_parsed['BypassAmpLimit'] = data_parsed.get('BypassAmpLimit') / 1000
-        data_parsed['BypassTempLimit'] = data_parsed.get('BypassTempLimit') - 40
-        data_parsed['HiCellTempAlert'] = data_parsed.get('HiCellTempAlert') - 40
-        data_parsed['BypassSessionAh'] = data_parsed.get('BypassSessionAh') / 1000
+        data_parsed['MinCellVolt'] = Payload.clean_voltage(data_parsed.get('MinCellVolt'))
+        data_parsed['MaxCellVolt'] = Payload.clean_voltage(data_parsed.get('MaxCellVolt'))
+        data_parsed['MinCellTemp'] = Payload.clean_temperature(data_parsed.get('MinCellTemp'))
+        data_parsed['BypassTemp'] = Payload.clean_temperature(data_parsed.get('BypassTemp'))
+        data_parsed['BypassAmp'] = Payload.clean_voltage(data_parsed.get('BypassAmp'))
+        data_parsed['LoCellVoltAlert'] = Payload.clean_voltage(data_parsed.get('LoCellVoltAlert'))
+        data_parsed['HiCellVoltAlert'] = Payload.clean_voltage(data_parsed.get('HiCellVoltAlert'))
+        data_parsed['BypassVoltLevel'] = Payload.clean_voltage(data_parsed.get('BypassVoltLevel'))
+        data_parsed['BypassAmpLimit'] = Payload.clean_voltage(data_parsed.get('BypassAmpLimit'))
+        data_parsed['BypassTempLimit'] = Payload.clean_temperature(data_parsed.get('BypassTempLimit'))
+        data_parsed['HiCellTempAlert'] = Payload.clean_temperature(data_parsed.get('HiCellTempAlert'))
+        data_parsed['BypassSessionAh'] = Payload.clean_voltage(data_parsed.get('BypassSessionAh'))
 
         return data_parsed
