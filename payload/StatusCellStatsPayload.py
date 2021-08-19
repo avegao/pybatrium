@@ -28,8 +28,8 @@ class StatusCellStatsPayload(Payload):
             'MaxBypassTempId' / Int8ub,
             'AvgCellVolt' / Int16ul,
             'AvgCellTemp' / Int8ub,
-            'NumOfCellsAboveInit / Int8ub,ialBypass'
-            'NumOfCellsAboveFina / Int8ub,lBypass'
+            'NumOfCellsAboveInitialBypass' / Int8ub,
+            'NumOfCellsAboveFinalBypass' / Int8ub,
             'NumOfCellsInBypass' / Int8ub,
             'NumOfCellsOverdue' / Int8ub,
             'NumOfCellsActive' / Int8ub,
