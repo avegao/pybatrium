@@ -4,6 +4,7 @@ from typing import Dict
 from payload.CellNodeFullPayload import CellNodeFullPayload
 from payload.CellNodeStatusPayload import CellNodeStatusPayload
 from payload.StatusCellStatsPayload import StatusCellStatsPayload
+from payload.StatusShuntPayload import StatusShuntPayload
 
 
 @unique
@@ -48,6 +49,8 @@ class PayloadEnum(Enum):
             return CellNodeStatusPayload.parse(data)
         if message_id is PayloadEnum.STATUS_CELL_STATS:
             return StatusCellStatsPayload.parse(data)
+        if message_id is PayloadEnum.STATUS_SHUNT:
+            return StatusShuntPayload.parse(data)
         else:
             # raise NotImplementedError(f'MessageId {message_id} not implemented')
             pass

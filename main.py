@@ -47,7 +47,7 @@ def parse_data(data: bytes) -> Message:
 
     logging.debug(f'payload received: {payload_enum.value} {payload_enum.name}')
 
-    if message.message_id == PayloadEnum.STATUS_CELL_STATS.value:
+    if message.message_id == PayloadEnum.STATUS_SHUNT.value:
         payload = PayloadEnum.parse(payload_enum, data)
 
         logging.debug(payload)

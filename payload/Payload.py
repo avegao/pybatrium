@@ -15,5 +15,14 @@ class Payload:
         return data / 1000
 
     @staticmethod
+    def clean_amperes(data: int) -> float:
+        return Payload.clean_voltage(data)
+
+    @staticmethod
     def clean_temperature(data: int) -> int:
         return data - 40
+
+    @staticmethod
+    def clean_percentage(data: int) -> float:
+        return data / 100
+
