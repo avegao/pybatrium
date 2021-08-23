@@ -3,6 +3,7 @@ from typing import Dict
 
 from payload.CellNodeFullPayload import CellNodeFullPayload
 from payload.CellNodeStatusPayload import CellNodeStatusPayload
+from payload.ControlRemoteStatusPayload import ControlRemoteStatusPayload
 from payload.StatusCellStatsPayload import StatusCellStatsPayload
 from payload.StatusCommsPayload import StatusCommsPayload
 from payload.StatusShuntPayload import StatusShuntPayload
@@ -54,6 +55,8 @@ class PayloadEnum(Enum):
             return StatusShuntPayload.parse(data)
         if message_id is PayloadEnum.STATUS_COMMS:
             return StatusCommsPayload.parse(data)
+        if message_id is PayloadEnum.CONTROL_REMOTE_STATUS:
+            return ControlRemoteStatusPayload.parse(data)
         else:
             # raise NotImplementedError(f'MessageId {message_id} not implemented')
             pass
