@@ -1,6 +1,7 @@
 import logging
 import socket
 import sys
+from typing import Generator, Iterator
 
 from construct import Struct, Int16ul, PaddedString
 
@@ -47,30 +48,30 @@ def parse_data(data: bytes) -> Message:
 
     logging.debug(f'payload received: {payload_enum.value} {payload_enum.name}')
 
-    if message.message_id == PayloadEnum.STATUS_SHUNT.value:
-        payload = PayloadEnum.parse(payload_enum, data)
+    # if message.message_id in PayloadEnum.STATUS_CONTROL_LOGIC.value:
+    message.payload = PayloadEnum.parse(payload_enum, data)
 
-        logging.debug(payload)
-
-        sys.exit(0)
+    # logging.debug(message.payload)
 
     return message
 
 
-def receive_message(server: socket) -> None:
+def receive_message(server: socket) -> Iterator[Message]:
     while True:
         data, addr = server.recvfrom(BUFFER_SIZE)
 
-        logging.debug(f"received {len(data)} bytes from {addr}")
+        # logging.debug(f"received {len(data)} bytes from {addr}")
 
-        parse_data(data)
+        yield parse_data(data)
 
 
 def main():
     logging.basicConfig(level=logging.DEBUG)
 
     server = start_server()
-    receive_message(server)
+
+    for message in receive_message(server):
+        logging.debug(message.payload)
 
     # data = b':2B,L\t\x90\x88\x0b4L\x0eL\x0eDD\x00\x00\xe8\x0c\x03\x00T\x0bh\x10\x04\x10\xa8\x06s_\x00\x02\x02\x06\x02\x02\x003\x01\x8c\x13\x00\x00\x00\x00\x00\x00\x00\x00\xfa'
     #
